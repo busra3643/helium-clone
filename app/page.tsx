@@ -1,10 +1,10 @@
 "use client";
-
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import StatsCards from "./components/StatsCards";
 import ProductsTable from "./components/ProductsTable";
+import ProductResearch from "./components/ProductResearch";
 
 export default function Home() {
   const [activePage, setActivePage] = useState("dashboard");
@@ -15,14 +15,22 @@ export default function Home() {
         activePage={activePage}
         setActivePage={setActivePage}
       />
-
       <section className="flex-1 p-10">
-        <Header />
 
-        <StatsCards />
+  {activePage === "dashboard" && (
+    <>
+      <Header />
+      <StatsCards />
+      <ProductsTable />
+    </>
+  )}
 
-        <ProductsTable />
-      </section>
-    </main>
+  {activePage === "research" && (
+    <ProductResearch />
+  )}
+
+</section>
+          
+   </main>
   );
 }
